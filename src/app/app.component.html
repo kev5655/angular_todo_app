@@ -1,3 +1,33 @@
-<h1 class="text-3xl font-bold underline">
-  Hello wworld!
-</h1>
+
+
+<div class="mt-10 m-auto w-1/2 shadow-sm hover:shadow-lg">
+  <div class="text-center border-gray-900 
+    rounded-t-xl bg-gray-900 
+    text-white py-4 font-semibold">
+    <h1 class="text-3xl">
+      Meine Todo's
+    </h1>
+    <p>
+      Offene Todos: {{countOpenTodos().length}}
+    </p>
+    <div class="grid grid-cols-3 p-2">
+      <input type="text"
+        (keyup)="setTodo($event)"
+        class="col-span-2 py-2 pl-3 m-2 rounded-xl 
+        text-gray-900 bg-gray-400"/>
+      <button (click)="addTodo()" 
+        class="col-span-1 m-2 rounded-xl 
+        cursor-pointer first-line:text-gray-900  bg-gray-400">
+      Add Todo </button>
+      
+    </div>
+  </div>
+  <div *ngFor="let todo of todos; let i = index">
+    <app-todo 
+      [todo]="todo" 
+      [index]="i" 
+      (todoIndex)="toggleTodo($event)"
+      (deleteIndex)="deleteTodo($event)">
+    </app-todo>
+  </div>
+</div>
